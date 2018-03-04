@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration status="ERROR" packages="org.hhs.appenders.ClassAppender">
+    <properties>
+        <property name="LOG_HOME">C:/Users/hewater/agent-logs</property>
+    </properties>
+    <Appenders>
+        <console name="Console" target="SYSTEM_OUT">
+        <!--输出日志的格式-->
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] %m%n"/>
+        </console>
+        <!--cpu info -->
+        <RollingFile name="RollingFileCpu" fileName="${LOG_HOME}/cpu.log" filePattern="${LOG_HOME}/cpu-%d{MM-dd-yyyy}-%i.log"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <!--mem info -->
+        <RollingFile name="RollingFileMem" fileName="${LOG_HOME}/mem.log" filePattern="${LOG_HOME}/mem-%d{MM-dd-yyyy}-%i.log"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <!--normal info -->
+        <RollingFile name="RollingFile-normal" fileName="${LOG_HOME}/agent.log" filePattern="${LOG_HOME}/agent-%d{MM-dd-yyyy}-%i.log"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <!--error -->
+        <RollingFile name="RollingFileErr" fileName="${LOG_HOME}/error.log" filePattern="${LOG_HOME}/error-%d{MM-dd-yyyy}-%i.log"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="2"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.hhs.monitor.CpuMonitor"  additivity="false">
+            <appender-ref ref="RollingFileCpu" level="INFO"/>
+            <appender-ref  ref="RollingFileErr" level="error"/>
+        </Logger>
+        <Logger name="org.hhs.monitor.MemoryMonitor"  additivity="false">
+            <appender-ref  ref="RollingFileErr" level="error"/>
+            <appender-ref  ref="RollingFileMem" level="INFO"/>
+        </Logger>
+
+        <Root level="TRACE">
+            <appender-ref ref="Console"/>
+            <!--<appender-ref ref="RollingFile-normal" />-->
+            <!--<appender-ref ref="RollingFileCpu"/>-->
+            <!--<appender-ref ref="RollingFileMem"/>-->
+            <!--<appender-ref ref="RollingFileErr"/>-->
+        </Root>
+    </Loggers>
+</configuration>

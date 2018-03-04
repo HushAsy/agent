@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration status="ERROR" packages="">
+    <properties>
+        <property name="LOG_HOME">C:/Users/hewater/agent-logs</property>
+    </properties>
+    <Appenders>
+        <console name="Console" target="SYSTEM_OUT">
+        <!--输出日志的格式-->
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+        </console>
+        <!--cpu info -->
+        <!--<Appender>-->
+            <RollingFile name="RollingFileCpu" fileName="${LOG_HOME}/cpu.log" filePattern="${LOG_HOME}/cpu-%d{MM-dd-yyyy}-%i.log"
+                         ignoreExceptions="false">
+                <PatternLayout>
+                    <Pattern>[%d{HH:mm:ss:SSS}] [%p]</Pattern>
+                </PatternLayout>
+                <Policies>
+                    <SizeBasedTriggeringPolicy size="10MB" />
+                </Policies>
+                <DefaultRolloverStrategy max="7"/>
+            </RollingFile>
+        <!--</Appender>-->
+        <!--mem info -->
+        <!--<Appender>-->
+            <RollingFile name="RollingFileMem" fileName="${LOG_HOME}/mem.log" filePattern="${LOG_HOME}/mem-%d{MM-dd-yyyy}-%i.log"
+                         ignoreExceptions="false">
+                <PatternLayout>
+                    <Pattern>[%d{HH:mm:ss:SSS}] [%p]</Pattern>
+                </PatternLayout>
+                <Policies>
+                    <SizeBasedTriggeringPolicy size="10MB" />
+                </Policies>
+                <DefaultRolloverStrategy max="7"/>
+            </RollingFile>
+        <!--</Appender>-->
+        <!--normal info -->
+        <!--<Appender>-->
+            <RollingFile name="RollingFile-normal" fileName="${LOG_HOME}/agent.log" filePattern="${LOG_HOME}/agent-%d{MM-dd-yyyy}-%i.log"
+                         ignoreExceptions="false">
+                <PatternLayout>
+                    <Pattern>[%d{HH:mm:ss:SSS}] [%p]</Pattern>
+                </PatternLayout>
+                <Policies>
+                    <SizeBasedTriggeringPolicy size="10MB" />
+                </Policies>
+                <DefaultRolloverStrategy max="7"/>
+            </RollingFile>
+        <!--</Appender>-->
+        <!--error -->
+        <!--<Appender>-->
+            <RollingFile name="RollingFileErr" fileName="${LOG_HOME}/error.log" filePattern="${LOG_HOME}/error-%d{MM-dd-yyyy}-%i.log"
+                         ignoreExceptions="false">
+                <PatternLayout>
+                    <Pattern>[%d{HH:mm:ss:SSS}] [%p]</Pattern>
+                </PatternLayout>
+                <Policies>
+                    <SizeBasedTriggeringPolicy size="20MB" />
+                </Policies>
+                <DefaultRolloverStrategy max="2"/>
+            </RollingFile>
+        <!--</Appender>-->
+    </Appenders>
+    <Loggers>
+        <Logger name="org.hhs.monitor.CpuMonitor" level="INFO">
+            <appender-ref ref="RollingFileCpu" />
+        </Logger>
+        <Logger name="org.hhs.monitor.MemoryMonitor" level="INFO">
+            <appender-ref  ref="RollingFileMem" />
+        </Logger>
+        <Logger name="org.hhs" level="ERROR">
+            <appender-ref  ref="RollingFileErr" />
+        </Logger>
+        <Root level="INFO">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFile-normal" />
+        </Root>
+    </Loggers>
+</configuration>
