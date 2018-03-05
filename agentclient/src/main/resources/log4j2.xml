@@ -77,10 +77,10 @@
 
         <Root level="TRACE">
             <appender-ref ref="Console"/>
-            <!--<appender-ref ref="RollingFile-normal" />-->
-            <!--<appender-ref ref="RollingFileCpu"/>-->
-            <!--<appender-ref ref="RollingFileMem"/>-->
-            <!--<appender-ref ref="RollingFileErr"/>-->
+            <appender-ref ref="RollingFile-normal" />
+            <appender-ref ref="RollingFileCpu"/>
+            <appender-ref ref="RollingFileMem"/>
+            <appender-ref ref="RollingFileErr"/>
         </Root>
     </Loggers>
 </configuration>
