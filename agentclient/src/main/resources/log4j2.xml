@@ -4,7 +4,7 @@
         <property name="LOG_HOME">/home/agent-logs</property>
     </properties>
     <Appenders>
-        <console name="Console" target="SYSTEM_OUT">
+        <console name="Console" ignoreExceptions="false">
         <!--输出日志的格式-->
             <PatternLayout pattern="[%d{HH:mm:ss:SSS}] %m%n"/>
         </console>
@@ -110,13 +110,15 @@
     <Loggers>
         <Logger name="org.hhs.monitor.CpuMonitor"  additivity="false">
             <appender-ref ref="RollingFileCpu" level="INFO"/>
-            <appender-ref  ref="RollingFileErr" level="error"/>
+            <!--<appender-ref  ref="RollingFileErr" level="error"/>-->
         </Logger>
         <Logger name="org.hhs.monitor.MemoryMonitor"  additivity="false">
-            <appender-ref  ref="RollingFileErr" level="error"/>
+            <!--<appender-ref  ref="RollingFileErr" level="error"/>-->
             <appender-ref  ref="RollingFileMem" level="INFO"/>
         </Logger>
-
+        <Logger name="RollingFile-normal" additivity="false">
+            <appender-ref  ref="RollingFile-normal" level="INFO"/>
+        </Logger>
         <Root level="TRACE">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFile-normal" />
