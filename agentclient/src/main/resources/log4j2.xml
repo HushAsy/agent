@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration status="ERROR" packages="org.hhs.appenders.ClassAppender">
     <properties>
-        <property name="LOG_HOME">C:/Users/hewater/agent-logs</property>
+        <property name="LOG_HOME">/home/agent-logs</property>
     </properties>
     <Appenders>
         <console name="Console" target="SYSTEM_OUT">
@@ -24,6 +24,48 @@
         </RollingFile>
         <!--mem info -->
         <RollingFile name="RollingFileMem" fileName="${LOG_HOME}/mem.log" filePattern="${LOG_HOME}/mem-%d{MM-dd-yyyy}-%i.log"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <!--net info-->
+        <RollingFile name="RollingFileNet" fileName="${LOG_HOME}/mem.log" filePattern="${LOG_HOME}/net-%d{MM-dd-yyyy}-%i.log"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <!--disk info -->
+        <RollingFile name="RollingFileDisk" fileName="${LOG_HOME}/disk.log" filePattern="${LOG_HOME}/disk-%d{MM-dd-yyyy}-%i.log"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <!--io info -->
+        <RollingFile name="RollingFileIo" fileName="${LOG_HOME}/io.log" filePattern="${LOG_HOME}/io-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>

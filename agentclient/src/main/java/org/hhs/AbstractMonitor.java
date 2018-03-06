@@ -1,19 +1,11 @@
 package org.hhs;
 
-import lombok.extern.slf4j.Slf4j;
-import org.hhs.instance.SigarInstance;
-import org.hyperic.sigar.DiskUsage;
-import org.hyperic.sigar.Mem;
-import org.hyperic.sigar.Sigar;
 import org.slf4j.Logger;
 
 public abstract class AbstractMonitor<T> {
-    protected Sigar sigar = SigarInstance.getSigarInstance();
-
     public void outPut(Logger log) {
         T t = getMonitorInstance();
-        log.info(t.getClass().getName()+":"+t.toString());
-        DiskUsage diskUsage;
+        log.info(t.toString());
     }
 
     public abstract T getMonitorInstance();

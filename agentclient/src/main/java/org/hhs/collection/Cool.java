@@ -1,10 +1,20 @@
 package org.hhs.collection;
 
+import org.hhs.cmd.ExecShell;
+import org.hhs.config.Config;
 import org.hhs.vo.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cool {
+    private Logger logger = LoggerFactory.getLogger("RollingFileErr");
+    private Logger loggerInfo = LoggerFactory.getLogger("RollingFile-normal");
     private static Cool cool = null;
-
+    private ExecShell execShell = new ExecShell();
     private Cool(){
 
     }
@@ -21,7 +31,22 @@ public class Cool {
     }
 
     public Cpu getCpu(){
-        return null;
+        InputStream inputStream = execShell.getInputStream(Config.cpu.getCommand());
+        List<String> list = new ArrayList();
+        BufferedReader bufferedReader = null;
+        try {
+            String str = null;
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
+            while ((str = bufferedReader.readLine())!= null){
+                list.add(str);
+                loggerInfo.info(str);
+            }
+        } catch (UnsupportedEncodingException e) {
+            logger.error("unsupportedEncoding", e);
+        } catch (IOException e) {
+            logger.error("read stream error", e);
+        }
+        return new Cpu();
     }
 
     public Disk getDisk(){

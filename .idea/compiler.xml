@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="agent" target="1.5" />
-      <module name="agentclient" target="1.7" />
+      <module name="agentclient" target="1.5" />
       <module name="agentserver" target="1.5" />
     </bytecodeTargetLevel>
   </component>

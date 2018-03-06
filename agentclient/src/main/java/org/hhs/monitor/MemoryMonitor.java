@@ -1,7 +1,7 @@
 package org.hhs.monitor;
 
 import org.hhs.AbstractMonitor;
-import org.hyperic.sigar.Mem;
+import org.hhs.vo.Mem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

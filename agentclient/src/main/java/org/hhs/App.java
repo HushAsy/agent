@@ -2,14 +2,11 @@ package org.hhs;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hhs.utils.LoadClassName;
-import org.hyperic.sigar.Cpu;
-import org.hyperic.sigar.Mem;
-import org.hyperic.sigar.Sigar;
-import org.hyperic.sigar.SigarException;
 
-import java.io.File;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -20,15 +17,19 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class App {
-    public static void main( String[] args ) throws SigarException {
+    public static void main( String[] args ) throws IOException {
         init();
+        ServerSocket socket = new ServerSocket(8001);
+        Socket socketClient = socket.accept();
     }
 
     public static void init(){
-        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(4);
         LoadClassName loadClassName = new LoadClassName();
         List<String> stringList = loadClassName.getStringList();
+
         for (String string : stringList){
+            System.out.println(string);
             try {
                 Class clazz = Class.forName(string);
                 try {
