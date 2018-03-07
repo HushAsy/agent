@@ -9,7 +9,7 @@ public class Disk {
         private String size;
         private String used;
         private String avail;
-        private double use = 0d;
+        private String use;
         private String mountedOn;
 
         @Override
