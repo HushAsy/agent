@@ -4,7 +4,7 @@ import lombok.Data;
 
 public class Disk {
     @Data
-    class DfH {
+    public static class DfH {
         private String fs;
         private String size;
         private String used;
@@ -19,7 +19,7 @@ public class Disk {
     }
 
     @Data
-    class DfI {
+    public static class DfI {
         private String fs;
         private String inodes;
         private String iUsed;

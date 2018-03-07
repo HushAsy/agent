@@ -3,19 +3,17 @@ package org.hhs.monitor;
 import org.hhs.AbstractMonitor;
 import org.hhs.collection.Cool;
 import org.hhs.vo.Disk;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class DiskMonitor extends AbstractMonitor<Disk> implements Runnable {
-    private Logger logger = LoggerFactory.getLogger("org.hhs.monitor.DiskMonitor");
+public class DiskHMonitor extends AbstractMonitor<Disk.DfH>{
 
-    public void run() {
-
-    }
-
-    public Disk getMonitorInstance() {
-        Cool cool = Cool.getCoolInstance();
-
+    public Disk.DfH getMonitorInstance() {
+        try {
+            Cool cool = Cool.getCoolInstance();
+            Disk.DfH dfh = cool.getDiskH();
+            return dfh;
+        } catch (Exception e) {
+            printException(e, Disk.DfH.class);
+        }
         return null;
     }
 }

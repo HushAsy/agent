@@ -1,18 +1,19 @@
 package org.hhs.monitor;
 
 import org.hhs.AbstractMonitor;
+import org.hhs.collection.Cool;
 import org.hhs.vo.Io;
-import org.hhs.vo.Net;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class IoMonitor extends AbstractMonitor<Io> implements Runnable{
-    private Logger logger = LoggerFactory.getLogger("org.hhs.monitor.IoMonitor");
-    public void run() {
-
-    }
+public class IoMonitor extends AbstractMonitor<Io>{
 
     public Io getMonitorInstance() {
+        try {
+            Cool cool = Cool.getCoolInstance();
+            Io io = cool.getIo();
+            return io;
+        } catch (Exception e) {
+            printException(e, Io.class);
+        }
         return null;
     }
 }

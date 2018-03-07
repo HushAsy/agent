@@ -38,8 +38,9 @@ public class LoadClassName {
         return stringList;
     }
 
-    public List<String> getStringList(){
-        String packageName = "org.hhs.monitor";
+    //根据包名，获取类的全路径名称:中间用.隔开
+    public List<String> getStringList(String packageName){
+//        String packageName = "org.hhs.monitor";
         List<String> classNames = null;
         try {
             classNames = getClassName(packageName, false);

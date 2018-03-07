@@ -50,8 +50,22 @@
             </Policies>
             <DefaultRolloverStrategy max="7"/>
         </RollingFile>
-        <!--disk info -->
-        <RollingFile name="RollingFileDisk" fileName="${LOG_HOME}/disk.log" filePattern="${LOG_HOME}/disk-%d{MM-dd-yyyy}-%i.log"
+        <!--diskH info -->
+        <RollingFile name="RollingFileDisk-h" fileName="${LOG_HOME}/disk-h.log" filePattern="${LOG_HOME}/disk-h-%d{MM-dd-yyyy}-%i.log"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <!--diski info -->
+        <RollingFile name="RollingFileDisk-i" fileName="${LOG_HOME}/disk-i.log" filePattern="${LOG_HOME}/disk-i-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
@@ -110,11 +124,27 @@
     <Loggers>
         <Logger name="org.hhs.monitor.CpuMonitor"  additivity="false">
             <appender-ref ref="RollingFileCpu" level="INFO"/>
-            <!--<appender-ref  ref="RollingFileErr" level="error"/>-->
+            <appender-ref  ref="RollingFileErr" level="error"/>
         </Logger>
         <Logger name="org.hhs.monitor.MemoryMonitor"  additivity="false">
-            <!--<appender-ref  ref="RollingFileErr" level="error"/>-->
+            <appender-ref  ref="RollingFileErr" level="error"/>
             <appender-ref  ref="RollingFileMem" level="INFO"/>
+        </Logger>
+        <Logger name="org.hhs.monitor.DiskHMonitor"  additivity="false">
+            <appender-ref ref="RollingFileDisk-h" level="INFO"/>
+            <appender-ref  ref="RollingFileErr" level="error"/>
+        </Logger>
+        <Logger name="org.hhs.monitor.DiskIMonitor"  additivity="false">
+            <appender-ref  ref="RollingFileDisk-i" level="INFO"/>
+            <appender-ref  ref="RollingFileErr" level="error"/>
+        </Logger>
+        <Logger name="org.hhs.monitor.NetMonitor"  additivity="false">
+            <appender-ref ref="RollingFileNet" level="INFO"/>
+            <appender-ref  ref="RollingFileErr" level="error"/>
+        </Logger>
+        <Logger name="org.hhs.monitor.IoMonitor"  additivity="false">
+            <appender-ref ref="RollingFileIo" level="INFO"/>
+            <appender-ref  ref="RollingFileErr" level="error"/>
         </Logger>
         <Logger name="RollingFile-normal" additivity="false">
             <appender-ref  ref="RollingFile-normal" level="INFO"/>
@@ -124,6 +154,10 @@
             <appender-ref ref="RollingFile-normal" />
             <appender-ref ref="RollingFileCpu"/>
             <appender-ref ref="RollingFileMem"/>
+            <appender-ref ref="RollingFileIo"/>
+            <appender-ref ref="RollingFileNet"/>
+            <appender-ref ref="RollingFileDisk-h"/>
+            <appender-ref ref="RollingFileDisk-i"/>
             <appender-ref ref="RollingFileErr"/>
         </Root>
     </Loggers>

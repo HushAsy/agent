@@ -36,7 +36,8 @@ public class App {
     public static void init(){
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         LoadClassName loadClassName = new LoadClassName();
-        List<String> stringList = loadClassName.getStringList();
+        String packageName = "org.hhs.monitor";
+        List<String> stringList = loadClassName.getStringList(packageName);
         for (String string : stringList){
             try {
                 Class clazz = Class.forName(string);

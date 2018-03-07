@@ -2,22 +2,17 @@ package org.hhs.monitor;
 
 import org.hhs.AbstractMonitor;
 import org.hhs.vo.Mem;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class MemoryMonitor extends AbstractMonitor<Mem> implements Runnable {
-    private Logger logger = LoggerFactory.getLogger("org.hhs.monitor.MemoryMonitor");
+public class MemoryMonitor extends AbstractMonitor<Mem> {
+
     public Mem getMonitorInstance() {
         try {
             Mem mem = new Mem();
             return mem;
         } catch (Exception e) {
-            printException(e, Mem.class, logger);
+            printException(e, Mem.class);
         }
         return null;
     }
 
-    public void run() {
-        outPut(logger);
-    }
 }

@@ -31,11 +31,18 @@ public class Cool {
         return new Cpu();
     }
 
-    public Disk getDisk(){
+    public Disk.DfH getDiskH(){
         ExecShell execShell = ExecShell.getExecShellInstance();
         Object object = execShell.execLinux(Config.disk_df_h.getCommand());
         loggerInfo.info(object.toString());
-        return new Disk();
+        return new Disk.DfH();
+    }
+
+    public Disk.DfI getDiskI(){
+        ExecShell execShell = ExecShell.getExecShellInstance();
+        Object object = execShell.execLinux(Config.disk_df_i.getCommand());
+        loggerInfo.info(object.toString());
+        return new Disk.DfI();
     }
 
     public Io getIo(){

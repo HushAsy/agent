@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 @Data
 public class Cpu {
+    private String cpu = null;
     private double usr = 0d;
     private double nice = 0d;
     private double sys = 0d;
@@ -17,6 +18,6 @@ public class Cpu {
 
     @Override
     public String toString() {
-        return usr+"|"+nice+"|"+sys+"|"+iowait+"|"+irq+"|"+soft+"|"+steal+"|"+guest+"|"+gnice+"|"+idle;
+        return cpu+"|"+usr+"|"+nice+"|"+sys+"|"+iowait+"|"+irq+"|"+soft+"|"+steal+"|"+guest+"|"+gnice+"|"+idle;
     }
 }
