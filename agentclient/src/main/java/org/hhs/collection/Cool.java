@@ -6,15 +6,9 @@ import org.hhs.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cool {
-    private Logger logger = LoggerFactory.getLogger("RollingFileErr");
     private Logger loggerInfo = LoggerFactory.getLogger("RollingFile-normal");
     private static Cool cool = null;
-    private ExecShell execShell = new ExecShell();
     private Cool(){
 
     }
@@ -31,37 +25,37 @@ public class Cool {
     }
 
     public Cpu getCpu(){
-        InputStream inputStream = execShell.getInputStream(Config.cpu.getCommand());
-        List<String> list = new ArrayList();
-        BufferedReader bufferedReader = null;
-        try {
-            String str = null;
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
-            while ((str = bufferedReader.readLine())!= null){
-                list.add(str);
-                loggerInfo.info(str);
-            }
-        } catch (UnsupportedEncodingException e) {
-            logger.error("unsupportedEncoding", e);
-        } catch (IOException e) {
-            logger.error("read stream error", e);
-        }
+        ExecShell execShell = ExecShell.getExecShellInstance();
+        Object object = execShell.execLinux(Config.cpu.getCommand());
+        loggerInfo.info(object.toString());
         return new Cpu();
     }
 
     public Disk getDisk(){
-        return null;
+        ExecShell execShell = ExecShell.getExecShellInstance();
+        Object object = execShell.execLinux(Config.disk_df_h.getCommand());
+        loggerInfo.info(object.toString());
+        return new Disk();
     }
 
     public Io getIo(){
-        return null;
+        ExecShell execShell = ExecShell.getExecShellInstance();
+        Object object = execShell.execLinux(Config.iostat.getCommand());
+        loggerInfo.info(object.toString());
+        return new Io();
     }
 
     public Mem getMem(){
-        return null;
+        ExecShell execShell = ExecShell.getExecShellInstance();
+        Object object = execShell.execLinux(Config.mem.getCommand());
+        loggerInfo.info(object.toString());
+        return new Mem();
     }
 
     public Net getNet(){
-        return null;
+        ExecShell execShell = ExecShell.getExecShellInstance();
+        Object object = execShell.execLinux(Config.ifstat.getCommand());
+        loggerInfo.info(object.toString());
+        return new Net();
     }
 }

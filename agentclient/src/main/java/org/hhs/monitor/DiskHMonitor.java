@@ -1,6 +1,7 @@
 package org.hhs.monitor;
 
 import org.hhs.AbstractMonitor;
+import org.hhs.collection.Cool;
 import org.hhs.vo.Disk;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,8 @@ public class DiskMonitor extends AbstractMonitor<Disk> implements Runnable {
     }
 
     public Disk getMonitorInstance() {
+        Cool cool = Cool.getCoolInstance();
+
         return null;
     }
 }
