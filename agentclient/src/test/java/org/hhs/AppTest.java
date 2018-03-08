@@ -91,7 +91,7 @@ public class AppTest<T> extends TestCase {
 //        String[] temps = iostat.split("\n");
 //        String[] st = {temps[temps.length-2],temps[temps.length-1]};
 //        System.out.println(initParamMap(st));
-        String sss = "#kernel\n" +
+        String net = "#kernel\n" +
                 "Interface        RX Pkts/Rate    TX Pkts/Rate    RX Data/Rate    TX Data/Rate  \n" +
                 "                 RX Errs/Drop    TX Errs/Drop    RX Over/Rate    TX Coll/Rate  \n" +
                 "lo                133195 0        133195 0         7218K 0         7218K 0      \n" +
@@ -100,8 +100,8 @@ public class AppTest<T> extends TestCase {
                 "                       0 0             0 0             0 0             0 0      \n" +
                 "eth1               29226 0         18865 0         1708K 0        26022K 0      \n" +
                 "                       0 0             0 0             0 0             0 0";
-        String[] str = sss.split("\n");
-        List<String> lists = Arrays.asList(str);
+        String[] str = net.split("\n");
+        List<String> lists = new ArrayList<String>(Arrays.asList(str));
         lists.remove(0);
 
         List<String> listPkts = new ArrayList<String>();
@@ -110,13 +110,26 @@ public class AppTest<T> extends TestCase {
         for (int i = 0; i < lists.size(); i++) {
             if (i%2 == 0) {
                 head = lists.get(i).split("\\s+")[0];
-                listPkts.add(head);
+                listPkts.add(lists.get(i));
             }else{
                 listErrs.add(head+" "+lists.get(i));
             }
         }
-        System.out.println(listPkts.toString());
-        System.out.println(listErrs.toString());
+        Object[]  strings = listPkts.toArray();
+        System.out.println(initParamMap(objToStr(strings)));
+        Object[]  strings1 = listErrs.toArray();
+        System.out.println(initParamMap(objToStr(strings1)));
+
+//        System.out.println(initParamMap((String[]) listPkts.toArray()));
+//        System.out.println(initParamMap((String[]) listErrs.toArray()));
+    }
+
+    private String[] objToStr(Object[] objects){
+        String[] strings = new String[objects.length];
+        for (int i = 0; i < objects.length; i++){
+            strings[i] = objects[i].toString();
+        }
+        return strings;
     }
 
     private Map<String, List<String>> initParamMap(String[] str) {
@@ -128,7 +141,11 @@ public class AppTest<T> extends TestCase {
             if (i == 0) {
                 String strs[] = str[i].split("\\s+");
                 for (String strTemp : strs) {
-                    strMap.put(strTemp.toLowerCase(), new ArrayList<String>());
+                    if(strMap.get(strTemp.toLowerCase()) == null) {
+                        strMap.put(strTemp.toLowerCase(), new ArrayList<String>());
+                    }else {
+                        strMap.put(strTemp, new ArrayList<String>());
+                    }
                 }
             } else {
                 String strs[] = str[i].split("\\s+");
@@ -142,4 +159,6 @@ public class AppTest<T> extends TestCase {
         }
         return strMap;
     }
+
+
 }

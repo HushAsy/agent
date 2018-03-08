@@ -1,23 +1,30 @@
 package org.hhs;
 
+import org.hhs.collection.Cool;
+import org.hhs.config.Config;
+import org.hhs.vo.DfH;
+import org.hhs.vo.DfI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 public abstract class AbstractMonitor<T> implements Runnable{
     protected Logger logger = LoggerFactory.getLogger("org.hhs.monitor."+this.getClass().getSimpleName());
+    protected Config config;
+    protected Class<?> t;
 
     public void outPut() {
-        T t = getMonitorInstance();
-        logger.info(t.toString());
+        setParam();
+        List<T> lists = Cool.getCoolInstance().getParseList(t, config);
+        for (T t:lists){
+            logger.info(t.toString());
+        }
     }
 
     public void run() {
         outPut();
     }
 
-    public abstract T getMonitorInstance();
-
-    protected void printException(Exception e, Class clzz){
-        logger.error("get {} instance is error",clzz.getName(), e);
-    }
+    public abstract void setParam();
 }

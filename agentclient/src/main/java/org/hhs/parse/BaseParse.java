@@ -2,7 +2,7 @@ package org.hhs.parse;
 
 import java.util.*;
 
-public abstract class BaseParse {
+public abstract class BaseParse<T> {
 
     protected Map<String, List<String>> initParamMap(String[] str){
         Map<String, List<String>> strMap = new LinkedHashMap<String, List<String>>();
@@ -14,7 +14,12 @@ public abstract class BaseParse {
                 String strs[] = str[i].split("\\s+");
                 for (String strTemp:strs){
                     if (strTemp.contains("%")){
-                        strMap.put(strTemp.replace("%","").toLowerCase(), new ArrayList<String>());
+//                        strMap.put(strTemp.replace("%","").toLowerCase(), new ArrayList<String>());
+                        if(strMap.get(strTemp.toLowerCase()) == null) {
+                            strMap.put(strTemp.toLowerCase(), new ArrayList<String>());
+                        }else {
+                            strMap.put(strTemp, new ArrayList<String>());
+                        }
                     }else{
                         strMap.put(strTemp.toLowerCase(), new ArrayList<String>());
                     }
@@ -31,4 +36,7 @@ public abstract class BaseParse {
         }
         return strMap;
     }
+
+    public abstract List<T> getObjectList(String var);
+
 }

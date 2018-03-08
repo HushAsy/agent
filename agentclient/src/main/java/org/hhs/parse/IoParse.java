@@ -1,13 +1,12 @@
 package org.hhs.parse;
 
-import org.hhs.vo.Disk;
 import org.hhs.vo.Io;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class IoParse extends BaseParse {
+public class IoParse extends BaseParse<Io> {
 
     public List<Io> getIoList(String str){
         String[] temps = str.split("\n");
@@ -35,5 +34,9 @@ public class IoParse extends BaseParse {
             ioList.add(io);
         }
         return ioList;
+    }
+
+    public List<Io> getObjectList(String var) {
+        return getIoList(var);
     }
 }

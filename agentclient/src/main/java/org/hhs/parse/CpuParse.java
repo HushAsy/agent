@@ -2,9 +2,12 @@ package org.hhs.parse;
 
 import org.hhs.vo.Cpu;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-public class CpuParse extends BaseParse {
+public class CpuParse extends BaseParse<Cpu> {
+
     public List<Cpu> getCpuList(String str){
         String[] strCPu = str.split("\n");
         Map<String, List<String>> paramsMap = null;
@@ -42,4 +45,7 @@ public class CpuParse extends BaseParse {
         return objects;
     }
 
+    public List<Cpu> getObjectList(String var) {
+        return getCpuList(var);
+    }
 }

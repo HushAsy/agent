@@ -1,19 +1,13 @@
 package org.hhs.monitor;
 
 import org.hhs.AbstractMonitor;
-import org.hhs.collection.Cool;
-import org.hhs.vo.Disk;
+import org.hhs.config.Config;
+import org.hhs.vo.DfH;
 
-public class DiskHMonitor extends AbstractMonitor<Disk.DfH>{
+public class DiskHMonitor extends AbstractMonitor<DfH>{
 
-    public Disk.DfH getMonitorInstance() {
-        try {
-            Cool cool = Cool.getCoolInstance();
-            Disk.DfH dfh = cool.getDiskH();
-            return dfh;
-        } catch (Exception e) {
-            printException(e, Disk.DfH.class);
-        }
-        return null;
+    public void setParam() {
+        this.config = Config.disk_df_h;
+        this.t = DfH.class;
     }
 }
