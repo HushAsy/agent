@@ -1,4 +1,4 @@
 package org.hhs.parse;
 
-public class NetParse {
+public class NetParse extends BaseParse {
 }

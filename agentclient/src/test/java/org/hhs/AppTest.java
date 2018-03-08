@@ -2,6 +2,8 @@ package org.hhs;
 
 import junit.framework.TestCase;
 import org.hhs.vo.Cpu;
+import org.hhs.vo.Mem;
+import org.hhs.vo.Net;
 
 import java.io.IOException;
 import java.util.*;
@@ -41,11 +43,80 @@ public class AppTest<T> extends TestCase {
                 "\n" +
                 "Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\n" +
                 "vda               0.00     3.31    0.02    6.10     0.90    43.62    14.54     0.14   22.22    3.01   22.30   0.48   0.30\n";
+        String memStr = "MemTotal:        3881692 kB\n" +
+                "MemFree:         1757332 kB\n" +
+                "MemAvailable:    3211652 kB\n" +
+                "Buffers:          153200 kB\n" +
+                "Cached:          1414512 kB\n" +
+                "SwapCached:            0 kB\n" +
+                "Active:          1259252 kB\n" +
+                "Inactive:         626948 kB\n" +
+                "Active(anon):     318840 kB\n" +
+                "Inactive(anon):      328 kB\n" +
+                "Active(file):     940412 kB\n" +
+                "Inactive(file):   626620 kB\n" +
+                "Unevictable:           0 kB\n" +
+                "Mlocked:               0 kB\n" +
+                "SwapTotal:             0 kB\n" +
+                "SwapFree:              0 kB\n" +
+                "Dirty:               400 kB\n" +
+                "Writeback:             0 kB\n" +
+                "AnonPages:        318484 kB\n" +
+                "Mapped:            74316 kB\n" +
+                "Shmem:               684 kB\n" +
+                "Slab:             189684 kB\n" +
+                "SReclaimable:     176524 kB\n" +
+                "SUnreclaim:        13160 kB\n" +
+                "KernelStack:        3264 kB\n" +
+                "PageTables:         5532 kB\n" +
+                "NFS_Unstable:          0 kB\n" +
+                "Bounce:                0 kB\n" +
+                "WritebackTmp:          0 kB\n" +
+                "CommitLimit:     1940844 kB\n" +
+                "Committed_AS:    1152540 kB\n" +
+                "VmallocTotal:   34359738367 kB\n" +
+                "VmallocUsed:       14264 kB\n" +
+                "VmallocChunk:   34359715580 kB\n" +
+                "HardwareCorrupted:     0 kB\n" +
+                "AnonHugePages:    231424 kB\n" +
+                "HugePages_Total:       0\n" +
+                "HugePages_Free:        0\n" +
+                "HugePages_Rsvd:        0\n" +
+                "HugePages_Surp:        0\n" +
+                "Hugepagesize:       2048 kB\n" +
+                "DirectMap4k:       44928 kB\n" +
+                "DirectMap2M:     3100672 kB\n" +
+                "DirectMap1G:     3145728 kB";
+//        String[] strs = strDh.replace("%25","%").replace("Mounted on","Mounted-on").split("\n");
+//        String[] temps = iostat.split("\n");
+//        String[] st = {temps[temps.length-2],temps[temps.length-1]};
+//        System.out.println(initParamMap(st));
+        String sss = "#kernel\n" +
+                "Interface        RX Pkts/Rate    TX Pkts/Rate    RX Data/Rate    TX Data/Rate  \n" +
+                "                 RX Errs/Drop    TX Errs/Drop    RX Over/Rate    TX Coll/Rate  \n" +
+                "lo                133195 0        133195 0         7218K 0         7218K 0      \n" +
+                "                       0 0             0 0             0 0             0 0      \n" +
+                "eth0              280065 0        267338 0        38322K 0        75394K 0      \n" +
+                "                       0 0             0 0             0 0             0 0      \n" +
+                "eth1               29226 0         18865 0         1708K 0        26022K 0      \n" +
+                "                       0 0             0 0             0 0             0 0";
+        String[] str = sss.split("\n");
+        List<String> lists = Arrays.asList(str);
+        lists.remove(0);
 
-        String[] strs = strDh.replace("%25","%").replace("Mounted on","Mounted-on").split("\n");
-        String[] temps = iostat.split("\n");
-        String[] st = {temps[temps.length-2],temps[temps.length-1]};
-        System.out.println(initParamMap(st));
+        List<String> listPkts = new ArrayList<String>();
+        List<String> listErrs = new ArrayList<String>();
+        String head = null;
+        for (int i = 0; i < lists.size(); i++) {
+            if (i%2 == 0) {
+                head = lists.get(i).split("\\s+")[0];
+                listPkts.add(head);
+            }else{
+                listErrs.add(head+" "+lists.get(i));
+            }
+        }
+        System.out.println(listPkts.toString());
+        System.out.println(listErrs.toString());
     }
 
     private Map<String, List<String>> initParamMap(String[] str) {
