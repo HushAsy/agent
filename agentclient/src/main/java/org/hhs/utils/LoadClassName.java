@@ -16,31 +16,8 @@ import java.util.jar.JarInputStream;
 public class LoadClassName {
     private static Logger logger = LoggerFactory.getLogger("RollingFile-normal");
 
-    public  List<String> getStringListLinux(){
-        List<String> stringList = new ArrayList();
-        String url = this.getClass().getResource("/").getFile();
-        System.out.println(url);
-        File file = new File(url);
-        JarFile jarFile = null;
-        try {
-            jarFile = new JarFile(file);
-        } catch (IOException e) {
-            logger.error("init jarFile error", e);
-        }
-        Enumeration<JarEntry> entries = jarFile.entries();
-        logger.info(entries.toString());
-        while (entries.hasMoreElements()){
-            JarEntry jarEntry = entries.nextElement();
-            if (jarEntry.getName().startsWith("org/hhs/monitor/")&&!"org/hhs/monitor/".equals(jarEntry.getName())) {
-                stringList.add(jarEntry.getName().replace("/","."));
-            }
-        }
-        return stringList;
-    }
-
     //根据包名，获取类的全路径名称:中间用.隔开
     public List<String> getStringList(String packageName){
-//        String packageName = "org.hhs.monitor";
         List<String> classNames = null;
         try {
             classNames = getClassName(packageName, false);
@@ -48,20 +25,6 @@ public class LoadClassName {
             logger.error("loadClassName error", e);
         }
         return classNames;
-    }
-
-    public  List<String> getStringListWindow(){
-        String packageName = this.getClass().getResource("/org/hhs/monitor").getPath();
-        List<String> stringList = new ArrayList<String>();
-        File fileDir = new File(packageName);
-        String clazzName = null;
-        if (fileDir.isDirectory()){
-            for (File file:fileDir.listFiles()){
-                clazzName = file.getName().substring(0,file.getName().indexOf("."));
-                stringList.add("org.hhs.monitor."+clazzName);
-            }
-        }
-        return stringList;
     }
 
     private static List<String> getClassNameByFile(String filePath, List<String> className, boolean childPackage) {
@@ -82,7 +45,6 @@ public class LoadClassName {
                 }
             }
         }
-
         return myClassName;
     }
 

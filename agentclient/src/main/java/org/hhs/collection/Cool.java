@@ -85,10 +85,6 @@ public class Cool {
             "DirectMap4k:       44928 kB\n" +
             "DirectMap2M:     3100672 kB\n" +
             "DirectMap1G:     3145728 kB";
-    //        String[] strs = strDh.replace("%25","%").replace("Mounted on","Mounted-on").split("\n");
-//        String[] temps = iostat.split("\n");
-//        String[] st = {temps[temps.length-2],temps[temps.length-1]};
-//        System.out.println(initParamMap(st));
     String netStr = "#kernel\n" +
             "Interface        RX Pkts/Rate    TX Pkts/Rate    RX Data/Rate    TX Data/Rate  \n" +
             "                 RX Errs/Drop    TX Errs/Drop    RX Over/Rate    TX Coll/Rate  \n" +
@@ -103,7 +99,6 @@ public class Cool {
     private static FactoryVo factoryVo = FactoryVo.getFactoryVo();
     private static Cool cool = null;
     private Cool(){
-
     }
 
     public static Cool getCoolInstance(){
@@ -116,30 +111,6 @@ public class Cool {
         }
         return cool;
     }
-
-//    public List<Cpu> getCpuList(){
-//        return getParseList(Cpu.class, Config.cpu);
-//    }
-//
-//    public List<DfH> getDiskHList(){
-//        return  getParseList(DfH.class, Config.disk_df_h);
-//    }
-//
-//    public List<DfI> getDiskIList(){
-//        return  getParseList(DfI.class, Config.disk_df_i);
-//    }
-//
-//    public List<Io> getIoList(){
-//        return  getParseList(Io.class, Config.iostat);
-//    }
-//
-//    public List<Mem> getMemList(){
-//        return  getParseList(Mem.class, Config.mem);
-//    }
-//
-//    public List<Net> getNetList(){
-//        return  getParseList(Net.class, Config.ifstat);
-//    }
 
     public List getParseList(Class clazz, Config config){
         ExecShell execShell = ExecShell.getExecShellInstance();

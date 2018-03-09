@@ -2,8 +2,6 @@ package org.hhs;
 
 import org.hhs.collection.Cool;
 import org.hhs.config.Config;
-import org.hhs.vo.DfH;
-import org.hhs.vo.DfI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

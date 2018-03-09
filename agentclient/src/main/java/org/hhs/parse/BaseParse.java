@@ -1,9 +1,12 @@
 package org.hhs.parse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 
 public abstract class BaseParse<T> {
-
+    protected Logger logger = LoggerFactory.getLogger("RollingFile-error");
     protected Map<String, List<String>> initParamMap(String[] str){
         Map<String, List<String>> strMap = new LinkedHashMap<String, List<String>>();
         for (int i = 0; i < str.length; ++i){
@@ -11,17 +14,12 @@ public abstract class BaseParse<T> {
                 continue;
             }
             if (i == 0){
-                String strs[] = str[i].split("\\s+");
+                String strs[] = str[i].replace("%", "").split("\\s+");
                 for (String strTemp:strs){
-                    if (strTemp.contains("%")){
-//                        strMap.put(strTemp.replace("%","").toLowerCase(), new ArrayList<String>());
-                        if(strMap.get(strTemp.toLowerCase()) == null) {
-                            strMap.put(strTemp.toLowerCase(), new ArrayList<String>());
-                        }else {
-                            strMap.put(strTemp, new ArrayList<String>());
-                        }
-                    }else{
+                    if(strMap.get(strTemp.toLowerCase()) == null) {
                         strMap.put(strTemp.toLowerCase(), new ArrayList<String>());
+                    }else{
+                        strMap.put(strTemp, new ArrayList<String>());
                     }
                 }
             }else {

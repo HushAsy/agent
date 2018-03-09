@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration status="ERROR" packages="org.hhs.appenders.ClassAppender">
     <properties>
-        <property name="LOG_HOME">/home/agent-logs</property>
+        <property name="LOG_HOME">/D:/logs/agent-logs</property>
     </properties>
     <Appenders>
         <console name="Console" ignoreExceptions="false">
@@ -37,7 +37,7 @@
             <DefaultRolloverStrategy max="7"/>
         </RollingFile>
         <!--net info-->
-        <RollingFile name="RollingFileNet" fileName="${LOG_HOME}/mem.log" filePattern="${LOG_HOME}/net-%d{MM-dd-yyyy}-%i.log"
+        <RollingFile name="RollingFileNet" fileName="${LOG_HOME}/net.log" filePattern="${LOG_HOME}/net-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
@@ -148,6 +148,9 @@
         </Logger>
         <Logger name="RollingFile-normal" additivity="false">
             <appender-ref  ref="RollingFile-normal" level="INFO"/>
+        </Logger>
+        <Logger name="RollingFile-error" additivity="false">
+            <appender-ref  ref="RollingFileErr" level="error"/>
         </Logger>
         <Root level="TRACE">
             <appender-ref ref="Console"/>
