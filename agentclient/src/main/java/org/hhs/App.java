@@ -1,5 +1,6 @@
 package org.hhs;
 
+import org.hhs.nettyClient.AgentClient;
 import org.hhs.utils.LoadClassName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +18,9 @@ import java.util.concurrent.TimeUnit;
 public class App {
     private static Logger logger = LoggerFactory.getLogger("RollingFile-normal");
     public static void main( String[] args ) throws Exception {
-        CountDownLatch countDownLatch = new CountDownLatch(2);
-        init();
-        countDownLatch.await();
+//        init();
+        AgentClient agentClient = new AgentClient();
+        agentClient.init();
     }
 
     public static void init(){

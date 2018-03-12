@@ -1,6 +1,7 @@
 package org.hhs;
 
 import junit.framework.TestCase;
+import org.hhs.parse.NetParse;
 import org.hhs.vo.Cpu;
 import org.hhs.vo.Mem;
 import org.hhs.vo.Net;
@@ -94,11 +95,11 @@ public class AppTest<T> extends TestCase {
         String net = "#kernel\n" +
                 "Interface        RX Pkts/Rate    TX Pkts/Rate    RX Data/Rate    TX Data/Rate  \n" +
                 "                 RX Errs/Drop    TX Errs/Drop    RX Over/Rate    TX Coll/Rate  \n" +
-                "lo                133195 0        133195 0         7218K 0         7218K 0      \n" +
+                "lo                     0 0             0 0             0 0             0 0      \n" +
                 "                       0 0             0 0             0 0             0 0      \n" +
-                "eth0              280065 0        267338 0        38322K 0        75394K 0      \n" +
+                "eth0                   0 0             0 0             0 0             0 0      \n" +
                 "                       0 0             0 0             0 0             0 0      \n" +
-                "eth1               29226 0         18865 0         1708K 0        26022K 0      \n" +
+                "eth1                   2 0             1 0           184 0           118 0      \n" +
                 "                       0 0             0 0             0 0             0 0";
         String[] str = net.split("\n");
         List<String> lists = new ArrayList<String>(Arrays.asList(str));
@@ -119,6 +120,9 @@ public class AppTest<T> extends TestCase {
         System.out.println(initParamMap(objToStr(strings)));
         Object[]  strings1 = listErrs.toArray();
         System.out.println(initParamMap(objToStr(strings1)));
+        NetParse netParse = new NetParse();
+        List<Net> nets = netParse.getNetList(net);
+        System.out.println(nets.toString());
 
 //        System.out.println(initParamMap((String[]) listPkts.toArray()));
 //        System.out.println(initParamMap((String[]) listErrs.toArray()));

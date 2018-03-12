@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration status="ERROR" packages="org.hhs.appenders.ClassAppender">
     <properties>
-        <property name="LOG_HOME">/D:/logs/agent-logs</property>
+        <property name="LOG_HOME">/D:/logs/agent-client</property>
     </properties>
     <Appenders>
         <console name="Console" ignoreExceptions="false">

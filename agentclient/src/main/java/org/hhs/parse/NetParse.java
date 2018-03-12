@@ -47,8 +47,8 @@ public class NetParse extends BaseParse {
                 net.setInter(listMap1.get("interface").get(i));
                 net.setRxPkts(listMap1.get("rx").get(i));
                 net.setRxPktsRate(listMap1.get("pkts/rate").get(i));
-                net.setRxOver(listMap2.get("rx").get(i));
-                net.setRxOverRate(listMap2.get("errs/drop").get(i));
+//                net.setRxOver(listMap2.get("RX").get(i));
+//                net.setRxOverRate(listMap2.get("Errs/Drop").get(i));
 
                 net.setTxPkts(listMap1.get("tx").get(i));
                 net.setTxPktsRate(listMap1.get("pkts/rate").get(i));
@@ -64,6 +64,9 @@ public class NetParse extends BaseParse {
                 net.setTxDataRate(listMap1.get("Data/Rate").get(i));
                 net.setTxColl(listMap2.get("TX").get(i));
                 net.setTxCollRate(listMap2.get("coll/rate").get(i));
+
+                net.setRxErrs(listMap2.get("rx").get(i));
+                net.setRxErrsDrop(listMap2.get("errs/drop").get(i));
                 netList.add(net);
             }
             return netList;

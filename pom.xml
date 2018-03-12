@@ -59,6 +59,19 @@
         <version>1.16.18</version>
         <scope>provided</scope>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-all</artifactId>
+        <version>5.0.0.Alpha2</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>24.0-jre</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 </project>
