@@ -1,12 +1,8 @@
 package org.hhs;
 
-import org.hhs.parse.BaseParse;
-import org.hhs.parse.CpuParse;
-import org.hhs.vo.Cpu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class FactoryVo {
