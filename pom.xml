@@ -9,6 +9,7 @@
   <modules>
     <module>agentserver</module>
     <module>agentclient</module>
+      <module>share</module>
   </modules>
   <packaging>pom</packaging>
 

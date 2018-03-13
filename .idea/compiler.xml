@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="agentclient" />
         <module name="agentserver" />
+        <module name="share" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="agent" target="1.5" />
       <module name="agentclient" target="1.5" />
       <module name="agentserver" target="1.5" />
+      <module name="share" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

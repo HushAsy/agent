@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/agent.iml" filepath="$PROJECT_DIR$/agent.iml" />
       <module fileurl="file://$PROJECT_DIR$/agentclient/agentclient.iml" filepath="$PROJECT_DIR$/agentclient/agentclient.iml" />
       <module fileurl="file://$PROJECT_DIR$/agentserver/agentserver.iml" filepath="$PROJECT_DIR$/agentserver/agentserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/share/share.iml" filepath="$PROJECT_DIR$/share/share.iml" />
     </modules>
   </component>
 </project>

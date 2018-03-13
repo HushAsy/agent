@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/agentclient" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/agentserver" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/share" charset="UTF-8" />
   </component>
 </project>
