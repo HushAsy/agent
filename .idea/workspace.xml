@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a533d06-54f3-4c9b-96be-0c5a47ded19c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_24_0_jre.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_compat_qual_2_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/agentserver/src/main/java/org/hhs/server/NettyChannelMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/share/src/main/java/org/hhs/share/BaseMsg.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/share/src/main/java/org/hhs/share/Constants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/share/src/main/java/org/hhs/share/MsgType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/share/src/main/java/org/hhs/share/PingMsg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agentclient/agentclient.iml" afterPath="$PROJECT_DIR$/agentclient/agentclient.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agentclient/pom.xml" afterPath="$PROJECT_DIR$/agentclient/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agentserver/agentserver.iml" afterPath="$PROJECT_DIR$/agentserver/agentserver.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agentserver/pom.xml" afterPath="$PROJECT_DIR$/agentserver/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agentserver/src/main/java/org/hhs/server/handler/ServerHandler.java" afterPath="$PROJECT_DIR$/agentserver/src/main/java/org/hhs/server/handler/ServerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/share/pom.xml" afterPath="$PROJECT_DIR$/share/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/share/share.iml" afterPath="$PROJECT_DIR$/share/share.iml" />
-    </list>
+    <list default="true" id="9a533d06-54f3-4c9b-96be-0c5a47ded19c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/share/target/" />
     <ignored path="$PROJECT_DIR$/agentserver/target/" />
@@ -59,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/agentserver/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="397">
-              <caret line="55" column="19" lean-forward="true" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+              <caret line="55" column="19" lean-forward="false" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -125,7 +105,7 @@
         <entry file="file://$PROJECT_DIR$/agentserver/src/main/java/org/hhs/server/handler/ServerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="294">
-              <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+              <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -196,7 +176,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="616" />
     <option name="width" value="757" />
     <option name="height" value="735" />
@@ -439,15 +419,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520929733089</updated>
-      <workItem from="1520929735278" duration="5671000" />
+      <workItem from="1520929735278" duration="5853000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5671000" />
+    <option name="totallyTimeSpent" value="5853000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="616" y="0" width="757" height="735" extended-state="0" />
+    <frame x="616" y="0" width="757" height="735" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -594,7 +574,7 @@
     <entry file="file://$PROJECT_DIR$/agentserver/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
-          <caret line="55" column="19" lean-forward="true" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+          <caret line="55" column="19" lean-forward="false" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -602,7 +582,7 @@
     <entry file="file://$PROJECT_DIR$/agentserver/src/main/java/org/hhs/server/handler/ServerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
-          <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
           <folding />
         </state>
       </provider>
