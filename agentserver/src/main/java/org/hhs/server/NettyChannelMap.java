@@ -1,7 +1,8 @@
 package org.hhs.server;
 
-import java.nio.channels.Channel;
-import java.nio.channels.SocketChannel;
+import io.netty.channel.Channel;
+import io.netty.channel.socket.SocketChannel;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

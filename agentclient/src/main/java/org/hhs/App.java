@@ -1,12 +1,14 @@
 package org.hhs;
 
-import org.hhs.nettyClient.AgentClient;
+import org.hhs.nettyClient.ClientBootStrap;
+import org.hhs.share.Constants;
+import org.hhs.share.MessageBody;
 import org.hhs.utils.LoadClassName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -19,8 +21,18 @@ public class App {
     private static Logger logger = LoggerFactory.getLogger("RollingFile-normal");
     public static void main( String[] args ) throws Exception {
 //        init();
-        AgentClient agentClient = new AgentClient();
-        agentClient.init();
+        Constants.setClientId("test");
+        ClientBootStrap clientBootStrap = new ClientBootStrap(9000, "127.0.0.1");
+        while (true) {
+            TimeUnit.SECONDS.sleep(3);
+            List<String> stringList = new ArrayList<String>();
+            stringList.add("hello");
+            stringList.add("hello1");
+            stringList.add("hello2");
+            MessageBody messageBody = new MessageBody();
+            messageBody.setBody(stringList);
+            messageBody.setHead("cpu");
+        }
     }
 
     public static void init(){

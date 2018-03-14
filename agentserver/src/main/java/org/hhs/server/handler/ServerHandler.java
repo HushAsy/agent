@@ -2,13 +2,15 @@ package org.hhs.server.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.util.ReferenceCountUtil;
 import org.hhs.server.NettyChannelMap;
 import org.hhs.share.BaseMsg;
 import org.hhs.share.MsgType;
+import org.hhs.share.PingMsg;
+import org.hhs.share.ReplyBody;
 
 import java.net.InetAddress;
-import java.nio.channels.SocketChannel;
 import java.util.Date;
 
 public class ServerHandler extends SimpleChannelInboundHandler<BaseMsg>{
@@ -28,8 +30,13 @@ public class ServerHandler extends SimpleChannelInboundHandler<BaseMsg>{
 //        channelHandlerContext.writeAndFlush(date+"\n");
         //心跳检查
         if (MsgType.PING.equals(baseMsg.getType())){
+            PingMsg pingMsg = (PingMsg) baseMsg;
+            ReplyBody replyBody = new ReplyBody();
+            replyBody.setResponse("ok");
+            NettyChannelMap.get(pingMsg.getClientId()).writeAndFlush(replyBody);
+        }else{
 
-        }else
+        }
         //db存储
         ReferenceCountUtil.release(null);
     }

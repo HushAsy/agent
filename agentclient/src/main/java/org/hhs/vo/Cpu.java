@@ -1,7 +1,6 @@
 package org.hhs.vo;
 
 import lombok.Data;
-import lombok.ToString;
 @Data
 public class Cpu {
     private String cpu = null;
