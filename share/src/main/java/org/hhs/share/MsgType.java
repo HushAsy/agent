@@ -1,5 +1,5 @@
 package org.hhs.share;
 
 public enum MsgType {
-    PING,SEND,REPLY;
+    PING,SEND,REPLY,LOGIN;
 }

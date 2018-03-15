@@ -3,7 +3,7 @@ package org.hhs.share;
 import java.io.Serializable;
 import java.util.List;
 
-public class MessageBody implements Serializable{
+public class MessageBody extends BaseMsg implements Serializable{
     private static final long serialVersionUID = 2L;
 
     private String head;
@@ -24,5 +24,13 @@ public class MessageBody implements Serializable{
 
     public void setBody(List<String> body) {
         this.body = body;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageBody{" +
+                "head='" + head + '\'' +
+                ", body=" + body +
+                '}';
     }
 }

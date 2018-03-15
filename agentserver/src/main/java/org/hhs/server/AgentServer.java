@@ -11,8 +11,11 @@ import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 import org.hhs.server.filter.ServerFilter;
 import org.hhs.server.handler.ServerHandler;
+import org.hhs.share.PingMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.TimeUnit;
 
 public class AgentServer {
     private int port;
@@ -22,20 +25,13 @@ public class AgentServer {
 
     private SocketChannel socketChannel;
 
-    public static void main(String...args){
-
-    }
-
     public AgentServer(int port){
         this.port = port;
-        try {
-            initServer();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        initServer();
+
     }
 
-    private void initServer() throws InterruptedException {
+    private void initServer()  {
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup worker = new NioEventLoopGroup();
         ServerBootstrap bootstrap = new ServerBootstrap();
@@ -52,9 +48,19 @@ public class AgentServer {
                 p.addLast(new ServerHandler());
             }
         });
-        ChannelFuture f = bootstrap.bind(port).sync();
-        if (f.isSuccess()){
-            System.out.println("server start----");
+        ChannelFuture f = null;
+        try {
+            f = bootstrap.bind(port).sync();
+            if (f.isSuccess()){
+                System.out.println("server start----");
+            }
+            f.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            boss.shutdownGracefully();
+            worker.shutdownGracefully();
         }
+
     }
 }

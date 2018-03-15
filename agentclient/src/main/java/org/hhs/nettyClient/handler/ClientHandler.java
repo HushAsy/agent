@@ -24,16 +24,16 @@ public class ClientHandler extends SimpleChannelInboundHandler<BaseMsg> {
     }
 
     protected void messageReceived(ChannelHandlerContext channelHandlerContext, BaseMsg baseMsg) throws Exception {
-        MsgType msgType = baseMsg.getType();
-        if (MsgType.PING.equals(msgType)){
-            System.out.println("receive ping from server----------");
-        }
+//        MsgType msgType = baseMsg.getType();
+//        if (MsgType.PING.equals(msgType)){
+//            System.out.println("receive ping from server----------");
+//        }
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("正在连接...");
-        super.channelActive(ctx);
+//        System.out.println("正在连接...");
+//        super.channelActive(ctx);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<BaseMsg> {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("连接关闭!");
-        super.channelInactive(ctx);
+//        System.out.println("连接关闭!");
+//        super.channelInactive(ctx);
     }
 }

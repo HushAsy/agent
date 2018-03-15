@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class App {
     public static void main( String[] args ) {
-        AgentServer agentServer = new AgentServer();
-        agentServer.initServer();
+        AgentServer agentServer = new AgentServer(12345);
     }
 }
