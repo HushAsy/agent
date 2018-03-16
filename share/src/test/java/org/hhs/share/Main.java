@@ -13,6 +13,10 @@ public class Main {
             String line = System.getProperty("line.separator");
             public void run() {
                 File file = new File("D:\\2018\\test.txt");
+                File fileParent = file.getParentFile();
+                if (!fileParent.exists()){
+                    fileParent.mkdirs();
+                }
                 if (!file.exists()){
                     try {
                         file.createNewFile();
@@ -57,9 +61,9 @@ public class Main {
 //            }
 //            key.reset();
 //        }
-        FileMonitor m = new FileMonitor(1000);
-        m.monitor("D:\\2018", new FileListener());
-        m.start();
+//        FileMonitor m = new FileMonitor(1000);
+//        m.monitor("D:\\2018", new FileListener());
+//        m.start();
     }
 
 

@@ -13,9 +13,9 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="agent" target="1.5" />
-      <module name="agentclient" target="1.5" />
+      <module name="agentclient" target="1.6" />
       <module name="agentserver" target="1.5" />
-      <module name="share" target="1.5" />
+      <module name="share" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

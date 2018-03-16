@@ -18,10 +18,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<BaseMsg>{
     }
 
     protected void messageReceived(ChannelHandlerContext channelHandlerContext, BaseMsg baseMsg) throws Exception {
-        System.out.println(baseMsg.getClientId());
-        //心跳检查
+        //登录检查
         if (MsgType.LOGIN.equals(baseMsg.getType())){
-            System.out.println("login");
             NettyChannelMap.add(baseMsg.getClientId(), (SocketChannel) channelHandlerContext.channel());
         }else if (MsgType.PING.equals(baseMsg.getType())){
             PingMsg pingMsg = (PingMsg) baseMsg;
@@ -29,8 +27,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<BaseMsg>{
             replyBody.setResponse("ok");
             NettyChannelMap.get(pingMsg.getClientId()).writeAndFlush(replyBody);
         }else{
-//            MessageBody messageBody = (MessageBody) baseMsg;
-//            System.out.println(messageBody.toString());
+            MessageBody messageBody = (MessageBody) baseMsg;
+            System.out.println(messageBody.toString());
         }
         //db存储
         ReferenceCountUtil.release(null);

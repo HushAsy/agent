@@ -1,7 +1,10 @@
-package org.hhs.share.filemonitor;
+package org.hhs.filemonitor;
 
 import org.apache.commons.io.monitor.FileAlterationListener;
 import org.apache.commons.io.monitor.FileAlterationObserver;
+import org.hhs.config.Common;
+import org.hhs.nettyClient.ClientBootStrap;
+import org.hhs.share.MessageBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,14 +12,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Arrays;
+import java.util.List;
 
 public class FileListener implements FileAlterationListener{
     private Logger loggerInfo = LoggerFactory.getLogger("RollingFile-normal");
     private Logger loggerError = LoggerFactory.getLogger("RollingFileErr");
 
-    Map<String, Long> stringLongMap = new ConcurrentHashMap(8);
+    private ClientBootStrap clientBootStrap;
+
+    public FileListener(ClientBootStrap clientBootStrap){
+        this.clientBootStrap = clientBootStrap;
+    }
+
+
 
     @Override
     public void onStart(FileAlterationObserver fileAlterationObserver) {
@@ -45,8 +54,15 @@ public class FileListener implements FileAlterationListener{
 
     @Override
     public void onFileChange(File file) {
-        String str = getString(file);
-        System.out.println(str);
+        String head = file.getName().substring(0,file.getName().lastIndexOf("."));
+        Long start = Common.stringLongMap.get(head);
+        String changeStr = getString(file, start, head);
+        List<String> stringList = Arrays.asList(changeStr.split("\r\n"));
+        MessageBody messageBody = new MessageBody();
+        messageBody.setHead(head);
+        messageBody.setBody(stringList);
+        System.out.println(messageBody.toString());
+        clientBootStrap.getSocketChannel().writeAndFlush(messageBody);
     }
 
     @Override
@@ -56,16 +72,16 @@ public class FileListener implements FileAlterationListener{
 
     @Override
     public void onStop(FileAlterationObserver fileAlterationObserver) {
+
     }
 
-    public String getString(File file){
-        String str = file.getName().substring(0,file.getName().lastIndexOf("."));
-        Long start = stringLongMap.get(str);
+    public String getString(File file, Long start, String head){
+//        Long start = stringLongMap.get(str);
         if (start == null){
             start = 0l;
         }
         Long length = file.length();
-        stringLongMap.put(str, length-1);
+        Common.stringLongMap.put(head, length-1);
         String result = "";
         RandomAccessFile randomAccessFile = null;
         byte[] bytes = new byte[(int) (length-start)];
