@@ -15,6 +15,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<BaseMsg>{
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         NettyChannelMap.remove((SocketChannel) ctx.channel());
+        System.out.println("捕获异常");
     }
 
     protected void messageReceived(ChannelHandlerContext channelHandlerContext, BaseMsg baseMsg) throws Exception {
@@ -32,5 +33,9 @@ public class ServerHandler extends SimpleChannelInboundHandler<BaseMsg>{
         }
         //db存储
         ReferenceCountUtil.release(null);
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
     }
 }

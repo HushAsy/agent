@@ -25,8 +25,6 @@ public class FileListener implements FileAlterationListener{
         this.clientBootStrap = clientBootStrap;
     }
 
-
-
     @Override
     public void onStart(FileAlterationObserver fileAlterationObserver) {
 
@@ -55,14 +53,16 @@ public class FileListener implements FileAlterationListener{
     @Override
     public void onFileChange(File file) {
         String head = file.getName().substring(0,file.getName().lastIndexOf("."));
-        Long start = Common.stringLongMap.get(head);
-        String changeStr = getString(file, start, head);
-        List<String> stringList = Arrays.asList(changeStr.split("\r\n"));
-        MessageBody messageBody = new MessageBody();
-        messageBody.setHead(head);
-        messageBody.setBody(stringList);
-        System.out.println(messageBody.toString());
-        clientBootStrap.getSocketChannel().writeAndFlush(messageBody);
+        if (!head.toLowerCase().startsWith("agent")){
+            Long start = Common.stringLongMap.get(head);
+            String changeStr = getString(file, start, head);
+            List<String> stringList = Arrays.asList(changeStr.split("\r\n"));
+            MessageBody messageBody = new MessageBody();
+            messageBody.setHead(head);
+            messageBody.setBody(stringList);
+            System.out.println(messageBody.toString());
+            clientBootStrap.getSocketChannel().writeAndFlush(messageBody);
+        }
     }
 
     @Override
@@ -76,7 +76,6 @@ public class FileListener implements FileAlterationListener{
     }
 
     public String getString(File file, Long start, String head){
-//        Long start = stringLongMap.get(str);
         if (start == null){
             start = 0l;
         }

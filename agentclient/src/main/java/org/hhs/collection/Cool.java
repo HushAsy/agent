@@ -112,9 +112,25 @@ public class Cool {
     }
 
     public List getParseList(Class clazz, Config config){
-        ExecShell execShell = ExecShell.getExecShellInstance();
-        Object object = execShell.execLinux(config.getCommand());
+//        ExecShell execShell = ExecShell.getExecShellInstance();
+//        Object object = execShell.execLinux(config.getCommand());
         BaseParse baseParse = (BaseParse) factoryVo.getObj(clazz);
-        return baseParse.getObjectList(object.toString());
+
+        if (clazz.getSimpleName().toLowerCase().startsWith("cpu")){
+            return baseParse.getObjectList(strCpu);
+        }else if (clazz.getSimpleName().toLowerCase().startsWith("diskh")){
+            return baseParse.getObjectList(strDh);
+        }else if (clazz.getSimpleName().toLowerCase().startsWith("diski")){
+            return baseParse.getObjectList(strDi);
+        }else if (clazz.getSimpleName().toLowerCase().startsWith("io")){
+            return baseParse.getObjectList(iostat);
+        }else if (clazz.getSimpleName().toLowerCase().startsWith("mem")){
+            return baseParse.getObjectList(memStr);
+        }else if (clazz.getSimpleName().toLowerCase().startsWith("net")){
+            return baseParse.getObjectList(netStr);
+        } else {
+            return null;
+        }
+
     }
 }

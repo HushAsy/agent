@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration status="ERROR" packages="org.hhs.appenders.ClassAppender">
     <properties>
-        <property name="LOG_HOME">/D:/logs/agent-client</property>
+        <property name="LOG_HOME">D:\logs\agent-client</property>
     </properties>
     <Appenders>
         <console name="Console" ignoreExceptions="false">
@@ -12,7 +12,7 @@
         <RollingFile name="RollingFileCpu" fileName="${LOG_HOME}/cpu.log" filePattern="${LOG_HOME}/cpu-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss:SSS}|%m %n</Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -26,7 +26,7 @@
         <RollingFile name="RollingFileMem" fileName="${LOG_HOME}/mem.log" filePattern="${LOG_HOME}/mem-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss:SSS}|%m %n</Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -40,7 +40,7 @@
         <RollingFile name="RollingFileNet" fileName="${LOG_HOME}/net.log" filePattern="${LOG_HOME}/net-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss:SSS}|%m %n</Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -54,7 +54,7 @@
         <RollingFile name="RollingFileDisk-h" fileName="${LOG_HOME}/disk-h.log" filePattern="${LOG_HOME}/disk-h-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss:SSS}|%m %n</Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -68,7 +68,7 @@
         <RollingFile name="RollingFileDisk-i" fileName="${LOG_HOME}/disk-i.log" filePattern="${LOG_HOME}/disk-i-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss:SSS}|%m %n</Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -82,7 +82,7 @@
         <RollingFile name="RollingFileIo" fileName="${LOG_HOME}/io.log" filePattern="${LOG_HOME}/io-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss:SSS}|%m %n</Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -96,7 +96,7 @@
         <RollingFile name="RollingFile-normal" fileName="${LOG_HOME}/agent.log" filePattern="${LOG_HOME}/agent-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss:SSS}|%m %n</Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -110,7 +110,7 @@
         <RollingFile name="RollingFileErr" fileName="${LOG_HOME}/error.log" filePattern="${LOG_HOME}/error-%d{MM-dd-yyyy}-%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
-                <Pattern>[%d{HH:mm:ss:SSS}] %m %n</Pattern>
+                <Pattern>%d{HH:mm:ss:SSS}|%m %n</Pattern>
             </PatternLayout>
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>

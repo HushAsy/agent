@@ -25,14 +25,11 @@ public class ClientBootStrap {
     public ClientBootStrap(int port, String host){
         this.port = port;
         this.host = host;
-        try {
-            start();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        start();
+
     }
 
-    private void start() throws InterruptedException {
+    private void start() {
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.channel(NioSocketChannel.class);
@@ -47,11 +44,19 @@ public class ClientBootStrap {
                 socketChannel.pipeline().addLast(new ClientHandler());
             }
         });
-        ChannelFuture future = bootstrap.connect(host, port).sync();
-        if (future.isSuccess()){
-            socketChannel = (SocketChannel) future.channel();
-            System.out.println("connect server 成功------");
+        ChannelFuture future = null;
+        try {
+            future = bootstrap.connect(host, port).sync();
+            if (future.isSuccess()){
+                socketChannel = (SocketChannel) future.channel();
+                System.out.println("connect server 成功------");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+//            eventLoopGroup.shutdownGracefully();
         }
+
     }
 
     public SocketChannel getSocketChannel() {

@@ -12,7 +12,7 @@ public class Common {
     public static Map<String, Long> stringLongMap = new ConcurrentHashMap(8);
 
     static {
-        InputStream inputStream = Thread.currentThread().getClass().getResourceAsStream("config.properties");
+        InputStream inputStream = Thread.currentThread().getClass().getResourceAsStream("/config.properties");
         Properties p = new Properties();
         try {
             p.load(inputStream);
